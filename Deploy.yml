@@ -1,0 +1,36 @@
+parameters:    
+  - name: DeployChanges
+    displayName: Deploy changes to tenant - if unchecked, only performs a preview and will not make any changes to the tenant
+    default: true
+    type: boolean        
+
+  - name: ExportBeforeDeploy
+    displayName: Runs an export operation before running the deployment - this is recommended to prevent any unintentional loss of changes made manually to the tenant
+    default: true
+    type: boolean            
+    
+  - name: UpdateBaseline
+    displayName: Updates to use the latest baseline during the deployment - if unchecked, the Deploy will use the same version of the baseline as was used for the previous Deploy
+    default: true
+    type: boolean            
+
+name: $(Date:yyyyMMdd)$(Rev:.r)
+trigger: none
+
+pool:
+  vmImage: windows-latest
+
+resources:
+  repositories:
+  - repository: Templates
+    type: github
+    name: simeoncloud/AzurePipelineTemplates
+    ref: refs/heads/master
+    endpoint: simeoncloud
+
+stages:
+- template: Deploy.yml@Templates
+  parameters:
+    DeployChanges: ${{ parameters.DeployChanges }}
+    ExportBeforeDeploy: ${{ parameters.ExportBeforeDeploy }}
+    UpdateBaseline: ${{ parameters.UpdateBaseline }}

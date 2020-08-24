@@ -1,6 +1,6 @@
 parameters:    
   - name: Comment
-    displayName: Export comment (included in Git history)
+    displayName: Comment - included in Git history
     default: '-'
     type: string    
     
@@ -22,14 +22,14 @@ pool:
 
 resources:
   repositories:
-  - repository: AzurePipelineTemplates
+  - repository: Templates
     type: github
     name: simeoncloud/AzurePipelineTemplates
     ref: refs/heads/master
     endpoint: simeoncloud
 
-extends:
-  template: M365ManagementExport.yml@AzurePipelineTemplates
+stages:
+- template: Export.yml@Templates
   parameters:
     Comment: ${{ parameters.Comment }}
     MergeChanges: ${{ parameters.MergeChanges }}

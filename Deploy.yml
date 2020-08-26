@@ -15,7 +15,8 @@ parameters:
     type: boolean            
 
 name: $(Date:yyyyMMdd)$(Rev:.r)
-trigger: none
+trigger: push
+pr: none
 
 pool:
   vmImage: windows-latest

@@ -10,7 +10,7 @@ parameters:
     type: boolean            
     
   - name: UpdateBaseline
-    displayName: Update to use the latest baseline during the deployment - if unchecked, the deployment will use the same version of the baseline as was used for the previous deployment
+    displayName: Update to use the latest baseline during the deployment - if unchecked, the deployment will use the same version of the baseline as used for the last successful deployment
     default: true
     type: boolean            
 

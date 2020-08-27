@@ -5,7 +5,7 @@ parameters:
     type: boolean        
 
   - name: ExportBeforeDeploy
-    displayName: Runs an export operation before running the deployment - this is recommended to prevent any unintentional loss of changes made manually to the tenant
+    displayName: Run an export operation before running the deployment - this is recommended to prevent any unintentional loss of changes made manually to the tenant
     default: true
     type: boolean            
     

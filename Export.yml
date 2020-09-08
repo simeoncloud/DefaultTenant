@@ -9,7 +9,7 @@ parameters:
     default: true
     type: boolean
 
-  - name: FileResourceProvider_AlwaysWriteToLastSource
+  - name: OverrideBaseline
     displayName: Override baseline - if checked, the export will save configurations to the repository that override those from the baseline
     default: true
     type: boolean
@@ -33,4 +33,4 @@ stages:
   parameters:
     Comment: ${{ parameters.Comment }}
     MergeChanges: ${{ parameters.MergeChanges }}
-    FileResourceProvider_AlwaysWriteToLastSource: ${{ parameters.FileResourceProvider_AlwaysWriteToLastSource }}
+    OverrideBaseline: ${{ parameters.OverrideBaseline }}

@@ -1,3 +1,2 @@
 {
-  "ResourceContext:M365Licenses": null // can be a list of licensed skus to assign to all Microsoft 365 groups - e.g. [ "SPB" ] or [ "EMSPREMIUM", "ENTERPRISEPREMIUM" ]
 }

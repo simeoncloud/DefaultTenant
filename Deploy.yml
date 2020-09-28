@@ -17,6 +17,14 @@ parameters:
 name: $(Date:yyyyMMdd)$(Rev:.r)
 trigger: none
 
+schedules:
+- cron: "0 7 * * *"
+  displayName: Daily run 7am UTC
+  branches:
+    include:
+    - master
+  always: true
+
 pool:
   vmImage: windows-latest
 

@@ -19,7 +19,7 @@ trigger: none
 
 schedules:
 - cron: "0 7 * * *"
-  displayName: Daily run 7am UTC
+  displayName: Daily Run 7AM UTC
   branches:
     include:
     - master

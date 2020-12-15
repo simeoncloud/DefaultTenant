@@ -10,7 +10,7 @@ parameters:
     type: boolean
 
   - name: UseLastDeployTagForExport
-    displayName: Gets the state of the last deployment, before doing an export - if unchecked, will use latest state of repo
+    displayName: Use last deployed state when exporting - if unchecked, will export against latest state of the repository
     default: true
     type: boolean
 

@@ -2,22 +2,27 @@ parameters:
   - name: Comment
     displayName: Comment - included in build number
     default: '-'
-    type: string    
+    type: string
 
-  - name: DeployChanges
+  - name: Deploy
     displayName: Deploy changes to tenant - if unchecked, only performs a preview and will not make any changes to the tenant
     default: true
-    type: boolean        
+    type: boolean
 
-  - name: ExportBeforeDeploy
+  - name: UseLastDeployTagForExport
+    displayName: Use last deployed state when exporting - if unchecked, will export against latest state of the repository
+    default: true
+    type: boolean
+
+  - name: Export
     displayName: Run an export operation before running the deployment - this is recommended to prevent any unintentional loss of changes made manually to the tenant
     default: true
-    type: boolean            
+    type: boolean
     
   - name: UpdateBaseline
     displayName: Update to use the latest baseline during the deployment - if unchecked, the deployment will use the same version of the baseline as used for the last successful deployment
     default: true
-    type: boolean            
+    type: boolean
 
 name: $(Date:yyyyMMdd)$(Rev:.r)
 trigger: none
@@ -42,9 +47,10 @@ resources:
     endpoint: simeoncloud
 
 stages:
-- template: Deploy.yml@Templates
+- template: Sync.yml@Templates
   parameters:
     Comment: ${{ parameters.Comment }}
-    DeployChanges: ${{ parameters.DeployChanges }}
-    ExportBeforeDeploy: ${{ parameters.ExportBeforeDeploy }}
+    Deploy: ${{ parameters.Deploy }}
+    UseLastDeployTagForExport: ${{ parameters.UseLastDeployTagForExport }}
+    Export: ${{ parameters.Export }}
     UpdateBaseline: ${{ parameters.UpdateBaseline }}

@@ -37,11 +37,11 @@ resources:
   - repository: Templates
     type: github
     name: simeoncloud/AzurePipelineTemplates
-    ref: refs/heads/feature/uploadResultsToPowerBI
+    ref: refs/heads/feature/movePowerBILogicToNewFile
     endpoint: simeoncloud
   - repository: Reporting
     type: github
-    name: simeoncloud/AzurePipelineTemplates
+    name: simeoncloud/reporting
     ref: refs/heads/feature/uploadToPowerBI
     endpoint: simeoncloud
 stages:
@@ -52,4 +52,3 @@ stages:
     UseLastDeployTagForExport: ${{ parameters.UseLastDeployTagForExport }}
     UpdateBaseline: ${{ parameters.UpdateBaseline }}
     Deploy: ${{ parameters.Deploy }}
-    

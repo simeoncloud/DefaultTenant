@@ -19,10 +19,6 @@ parameters:
   displayName: Deploy changes to tenant - if unchecked, only performs a preview and will not make any changes to the tenant
   default: true
   type: boolean
-- name: PublishToPowerBI
-  displayName: Publish sync results to Power BI for detailed reporting
-  default: false
-  type: boolean
 variables:
 - group: Sync
 name: $(Date:yyyyMMdd)$(Rev:.r)
@@ -56,4 +52,3 @@ stages:
     UseLastDeployTagForExport: ${{ parameters.UseLastDeployTagForExport }}
     UpdateBaseline: ${{ parameters.UpdateBaseline }}
     Deploy: ${{ parameters.Deploy }}
-    PublishToPowerBI: ${{ parameters.PublishToPowerBI }}

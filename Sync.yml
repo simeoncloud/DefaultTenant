@@ -1,26 +1,26 @@
-parameters:   
-  - name: Comment
-    displayName: Comment - included in build number
-    default: '-'
-    type: string
-  - name: Export
-    displayName: Run an export operation before running the deployment - this is recommended to prevent any unintentional loss of changes made manually to the tenant
-    default: true
-    type: boolean    
-  - name: UseLastDeployTagForExport
-    displayName: Use last deployed state when exporting - if unchecked, will export against latest state of the repository
-    default: true
-    type: boolean
-  - name: UpdateBaseline
-    displayName: Update to use the latest baseline during the deployment - if unchecked, the deployment will use the same version of the baseline as used for the last successful deployment
-    default: true
-    type: boolean
-  - name: Deploy
-    displayName: Deploy changes to tenant - if unchecked, only performs a preview and will not make any changes to the tenant
-    default: true
-    type: boolean
+parameters:
+- name: Comment
+  displayName: Comment - included in build number
+  default: '-'
+  type: string
+- name: Export
+  displayName: Run an export operation before running the deployment - this is recommended to prevent any unintentional loss of changes made manually to the tenant
+  default: true
+  type: boolean
+- name: UseLastDeployTagForExport
+  displayName: Use last deployed state when exporting - if unchecked, will export against latest state of the repository
+  default: true
+  type: boolean
+- name: UpdateBaseline
+  displayName: Update to use the latest baseline during the deployment - if unchecked, the deployment will use the same version of the baseline as used for the last successful deployment
+  default: true
+  type: boolean
+- name: Deploy
+  displayName: Deploy changes to tenant - if unchecked, only performs a preview and will not make any changes to the tenant
+  default: true
+  type: boolean
 variables:
-  - group: Sync
+- group: Sync
 name: $(Date:yyyyMMdd)$(Rev:.r)
 trigger: none
 schedules:
@@ -39,6 +39,11 @@ resources:
     name: simeoncloud/AzurePipelineTemplates
     ref: refs/heads/master
     endpoint: simeoncloud
+  - repository: Reporting
+    type: github
+    name: simeoncloud/reporting
+    ref: refs/heads/main
+    endpoint: simeoncloud
 stages:
 - template: Sync.yml@Templates
   parameters:
@@ -47,3 +52,4 @@ stages:
     UseLastDeployTagForExport: ${{ parameters.UseLastDeployTagForExport }}
     UpdateBaseline: ${{ parameters.UpdateBaseline }}
     Deploy: ${{ parameters.Deploy }}
+    IsReportingRepositoryDeclared: true
